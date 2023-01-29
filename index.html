@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <style>
+        .container {
+            display: grid;
+        }
+        
+        .product {
+            width: 652px;
+            display: flex;
+            margin-bottom: 40px;
+            box-shadow: 17px 19px 24px 0px #00000021;
+            border: 1px solid #EAEAEA
+        }
+        
+        .product__content {
+            margin-left: 30px;
+            width: 262px;
+        }
+        
+        h3 {
+            font-size: 24px;
+            width: 80%;
+        }
+        
+        p {
+            font-size: 22px;
+            line-height: 8px;
+        }
+        
+        .productId {
+            margin-bottom: 40px;
+        }
+        
+        .closeImg {
+            width: 18px;
+            height: 18px;
+            margin-top: 28px;
+            margin-left: 57px;
+        }
+        
+        body {
+            font-family: 'Lato', sans-serif;
+            font-family: 'Lato';
+            font-style: normal;
+            font-weight: 400;
+        }
+        
+        .priceValue {
+            color: red;
+            margin-left: 5px;
+        }
+        
+        .productPrice {
+            display: flex;
+            height: 29px;
+        }
+        
+        .productQuantity {
+            display: flex;
+            height: 10px;
+        }
+        
+        .quanText {
+            margin-top: 0px;
+        }
+        
+        .quanValue {
+            margin-top: -8px;
+            width: 44px;
+            height: 24.95px;
+            margin-left: 24px;
+            border: 1px solid #EAEAEA;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+    </div>
+
+    <script src="data.js"></script>
+    <script>
+        const data = JSON.parse(dataInfo);
+        data.forEach(element => {
+            const container = document.querySelector('.container')
+
+            const productEl = document.createElement('div')
+            productEl.classList.add('product')
+
+            const productImg = document.createElement('img')
+            productImg.setAttribute('alt', 'product__image')
+            productImg.src = element.image;
+
+            const product__content = document.createElement('div')
+            product__content.classList.add('product__content')
+            const productId = document.createElement('h3')
+            productId.classList.add('productId')
+            productId.textContent = element.id;
+            const productPrice = document.createElement('p')
+            productPrice.classList.add('productPrice')
+            const priceText = document.createElement('p')
+            priceText.classList.add('priceText')
+            priceText.textContent = 'Price: '
+            const priceValue = document.createElement('p')
+            priceValue.classList.add('priceValue')
+            priceValue.textContent = element.price;
+            const productColor = document.createElement('p')
+            productColor.classList.add('productColor')
+            productColor.textContent = element.color
+            const productSize = document.createElement('p')
+            productSize.classList.add('productSize')
+            productSize.textContent = element.size
+            const productQuantity = document.createElement('p')
+            productQuantity.classList.add('productQuantity')
+            const quanText = document.createElement('p')
+            quanText.classList.add('quanText')
+            quanText.textContent = 'Quantity: '
+            const quanValue = document.createElement('p')
+            quanValue.classList.add('quanValue')
+            quanValue.textContent = element.quantity
+
+            const closeImg = document.createElement('img')
+            closeImg.classList.add('closeImg')
+            closeImg.src = "image/cross.png"
+
+            productPrice.appendChild(priceText);
+            productPrice.appendChild(priceValue);
+            productQuantity.appendChild(quanText);
+            productQuantity.appendChild(quanValue);
+            product__content.appendChild(productId);
+            product__content.appendChild(productPrice);
+            product__content.appendChild(productColor);
+            product__content.appendChild(productSize);
+            product__content.appendChild(productQuantity);
+
+            container.appendChild(productEl);
+            productEl.appendChild(productImg);
+            productEl.appendChild(product__content);
+            productEl.appendChild(closeImg);
+            closeImg.addEventListener('click', (e) => {
+                console.log(e.target)
+                e.target.parentNode.remove();
+            })
+        });
+    </script>
+</body>
+
+</html>
